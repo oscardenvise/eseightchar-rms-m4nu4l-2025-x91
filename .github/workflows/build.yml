@@ -48,41 +48,29 @@ jobs:
           if-no-files-found: error
 
   emerald:
-    name: Pokémon Emerald (.gba)
+    name: Pokémon Emerald expansion (.gba)
     runs-on: ubuntu-latest
-    env:
-      MODERN: 0
-      COMPARE: 0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Checkout agbcc
-        uses: actions/checkout@v4
-        with:
-          path: agbcc
-          repository: pret/agbcc
-
       - name: Installera beroenden
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential binutils-arm-none-eabi libpng-dev
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi gcc-arm-none-eabi libnewlib-arm-none-eabi libpng-dev python3
 
-      - name: Bygg och installera agbcc
-        working-directory: agbcc
-        run: |
-          ./build.sh
-          ./install.sh ../pokeemerald
+      - name: Generera story-flaggor och testpunkter
+        run: python3 tools/story/gen_story.py
 
       - name: Bygg pokeemerald.gba
-        working-directory: pokeemerald
+        working-directory: pokeemerald-expansion
         run: make -j$(nproc)
 
       - name: Ladda upp ROM
         uses: actions/upload-artifact@v4
         with:
           name: pokeemerald-gba
-          path: pokeemerald/pokeemerald.gba
+          path: pokeemerald-expansion/pokeemerald.gba
           if-no-files-found: error
 
   crystal:

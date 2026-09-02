@@ -1,13 +1,13 @@
 # Pokémon-modifieringar
 
-Det här repot innehåller källkoden till tre Pokémon-spel, hämtad från
+Det här repot innehåller källkoden till tre Pokémon-spel. `pokeemerald-expansion/` är själva spelet vi bygger; FireRed och Crystal är källor för kartor, grafik, musik och story, hämtad från
 pret-projektens dekompileringar/disassemblies, med målet att göra egna
 ändringar och bygga spelbara ROM-filer.
 
 | Mapp             | Spel                       | Upstream                                                        | ROM-fil            | Spelas i                        |
 |------------------|----------------------------|-----------------------------------------------------------------|--------------------|---------------------------------|
 | `pokefirered/`   | Pokémon FireRed (GBA)      | [pret/pokefirered](https://github.com/pret/pokefirered) @ `c75f352` | `pokefirered.gba`  | mGBA, VisualBoyAdvance-M m.fl.  |
-| `pokeemerald/`   | Pokémon Emerald (GBA)      | [pret/pokeemerald](https://github.com/pret/pokeemerald) @ `5eff786` | `pokeemerald.gba`  | mGBA, VisualBoyAdvance-M m.fl.  |
+| `pokeemerald-expansion/` | **Huvudprojektet.** Emerald-motorn med RHH:s expansion | [rh-hideout/pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion) @ `fbe12db` | `pokeemerald.gba` | mGBA, VisualBoyAdvance-M m.fl. |
 | `pokecrystal/`   | Pokémon Crystal (GBC)      | [pret/pokecrystal](https://github.com/pret/pokecrystal) @ `7a7881d`  | `pokecrystal.gbc`  | mGBA, SameBoy, BGB m.fl.        |
 
 ## Så bygger du
@@ -20,7 +20,7 @@ Lokalt (Ubuntu/Debian/WSL):
 
 ```bash
 ./pokefirered/build_rom.sh     # -> pokefirered/pokefirered.gba
-./pokeemerald/build_rom.sh     # -> pokeemerald/pokeemerald.gba
+./pokeemerald-expansion/build_rom.sh   # -> pokeemerald-expansion/pokeemerald.gba (kräver gcc-arm-none-eabi)
 ./pokecrystal/build_rom.sh     # -> pokecrystal/pokecrystal.gbc
 ```
 
@@ -30,7 +30,6 @@ första gången. Manuella instruktioner finns i respektive `INSTALL.md`.
 Så länge inga ändringar gjorts matchar byggena originalen:
 
 - `pokefirered.gba` sha1 `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc` (kontrollera med `make compare` i `pokefirered/`)
-- `pokeemerald.gba` sha1 `f3ae088181bf583e55daf962a92bb46f4f1d07b7` (kontrollera med `make compare` i `pokeemerald/`)
 - `pokecrystal.gbc` sha1 `f4cd194bdee0d04ca4eac29e09b8e4e9d818c133` (kontrollera med `make compare` i `pokecrystal/`)
 
 ## Var saker finns i koden
@@ -52,7 +51,7 @@ Så länge inga ändringar gjorts matchar byggena originalen:
 | Spelmekanik (strid, XP, fångst)    | `src/battle_*.c`, `src/pokemon.c`                                 |
 | Musik och ljud                     | `sound/`                                                          |
 
-### Pokémon Emerald (`pokeemerald/`, skrivet i C)
+### Pokémon Emerald (`pokeemerald-expansion/`, skrivet i C)
 
 Samma struktur som FireRed. Skillnaderna i tabellen ovan är:
 
@@ -85,72 +84,61 @@ Pret har dessutom en bra samling färdiga guider för vanliga ändringar i
 Crystal: <https://github.com/pret/pokecrystal/wiki/Tutorials>.
 
 
-## Kanto i Emerald (steg 1 av sammanslagningen)
+## Planen: ett spel med Johto, Kanto och Hoenn
 
-Målet är ett spel med Hoenn, Kanto och Johto, byggt på Emerald-motorn. Steg 1 är
-att flytta Kantos kartor från FireRed in i `pokeemerald/`. Det görs med
-konverteringsverktyget **`tools/kanto_import/import_kanto.py`**.
+Storyn börjar i Johto (som i Crystal), fortsätter naturligt till Kanto efter
+Elite 4, och avslutas med en ny story i Hoenn som använder Emeralds gym,
+tränare, legendarer och Elite 4. Motorn är **pokeemerald-expansion** (RHH).
 
-### Vad verktyget gör
+Varför expansion: den har redan utökade flaggor, 16-bitars sprite-ID:n,
+dag/natt med riktig klocka, mötestabeller per tid på dygnet (Johto!), alla
+Pokémon, en debugmeny, och **alla FireRed-kartor och Kanto-tilesets i
+GBA-format** (byggs i dag bara som FireRed-version, men datan finns).
 
-```bash
-python3 tools/kanto_import/import_kanto.py     # kör från repo-roten (kräver Pillow)
-```
+### Arbetsflöde
 
-- Läser `tools/kanto_import/config.json` (vilka kartor som ska importeras m.m.).
-- **Tilesets:** FireRed delar tiles/metatiles vid 640, Emerald vid 512. Verktyget
-  skapar nya Emerald-tilesets (`Kanto*`) genom att flytta FireRed-primärens
-  sista 128 tiles/metatiles in i varje sekundärtileset. Tile-index och
-  metatile-ID:n blir därmed oförändrade, så kartorna kan kopieras rakt av.
-  Metatile-attribut konverteras från FireReds 32-bitarsformat till Emeralds
-  16-bitarsformat och beteenden mappas namn för namn (fallbacktabell i configen).
-- **Layouter och kartor:** kopieras till `data/layouts/Kanto*` och `data/maps/`,
-  med `map.json` översatt (musik → `MUS_RG_*`, sprites, rörelsetyper, flaggor).
-- **Flaggor/variabler:** FireReds `FLAG_*`/`VAR_*` får alias till oanvända
-  Emerald-flaggor (`include/constants/flags.h`, `vars.h`). Tilldelningen sparas i
-  `tools/kanto_import/allocations.json` så att den är stabil mellan körningar.
-- **Sprites:** Prof. Oak, Daisy, Blue, Giovanni, Pokédex och Town Map portas till
-  Emeralds oanvända sprite-platser. Övriga FireRed-sprites mappas till liknande
-  Emerald-sprites.
-- **Skript:** konverteras mekaniskt (FireRed-specifika kommandon tas bort,
-  okända specials/etiketter loggas, tränarstrider mot FireRed-tränare blir text).
-  Rapporten hamnar i `tools/kanto_import/last_report.txt`. Filer med
-  `KANTO_IMPORT_BEGIN` på första raden skrivs om vid nästa körning; ta bort raden
-  för att handjustera.
-- **Vilda Pokémon:** FireReds mötestabeller läggs till i `wild_encounters.json`.
-- **Motorändringar i Emerald:** FireReds trappvarpar (gå in i trappan från sidan)
-  finns nu som `MB_*_STAIR_WARP` i `field_control_avatar.c`, och FireReds
-  General-tileset-animationer (blommor, vatten) i `src/data/kanto/tileset_anims.h`.
+| Vad | Verktyg |
+|---|---|
+| Kartor, byggnader, städer, NPC:er, varpar, skyltar, vilda Pokémon | **[Porymap](https://github.com/huderlem/porymap)** – öppna mappen `pokeemerald-expansion/` som projekt |
+| Story: milstolpar, låsningar och testpunkter | `story/milestones.json` + `python3 tools/story/gen_story.py` (se nedan) |
+| Testa från en viss punkt i spelet | I spelet: håll **R** och tryck **Start** → *Utilities…* → *Story checkpoints…* |
+| Hoppa över introt vid test | På titelskärmen: tryck **Select** (Quickstart) |
+| Övrig debug (ge Pokémon/items, sätt flaggor, varpa) | Samma debugmeny (R + Start) |
+| Karaktärseditor (kläder, huvud, kropp) | Kommer – egen editor som skriver Emerald-sprites |
+| Crystals musik i GBA-format | Kommer – konverterare från pokecrystals ljuddata till `mid2agb` |
+| Johto- och Kanto-kartor från Crystals layouter | Kommer – konverterare med block→metatile-tabeller per tileset |
 
-### Vad som är importerat och testat i emulator
+Debugmenyn och Quickstart är avstängda i release-byggen automatiskt.
 
-Pallet Town, Route 1, Viridian City samt interiörerna (spelarens hus 1F/2F,
-rivalens hus, Oaks labb, Viridians hus, gym, skola, mart och Pokémon Center).
-Kantos vilda Pokémon dyker upp på Route 1.
+### Storyfilen `story/milestones.json`
 
-Koppling Hoenn ↔ Kanto: en sjöman i Littleroot Town (nedanför husen) seglar till
-Pallet Town, och en sjöman i Pallet Town seglar tillbaka. Prof. Oak i labbet ger
-en Kanto-starter (Bulbasaur, Charmander eller Squirtle).
+Här bestämmer vi storyn. Två delar:
 
-Handjusterade skript: `PalletTown`, `Route1`, `ViridianCity`, `ViridianCity_School`,
-`PalletTown_PlayersHouse_2F`, `PalletTown_ProfessorOaksLab` (helt omskrivet) och
-`data/kanto/hoenn_hooks.inc` (sjömännen).
+- **`story_flags`** – flaggor som skripten använder för att låsa och öppna
+  spelet, t.ex. `FLAG_STORY_KANTO_UNLOCKED`. Generatorn ger dem lediga
+  flaggnummer och skriver `FLAG_STORY_*` in i `include/constants/flags.h`.
+  I ett kartskript blir en låst väg t.ex.
+  `goto_if_unset FLAG_STORY_KANTO_UNLOCKED, Route_EventScript_RoadClosed`.
+- **`checkpoints`** – testpunkter. Varje punkt beskriver spelläget: flaggor,
+  variabler, antal badges, lag, föremål, Pokédex och var spelaren står. En punkt
+  kan bygga på en annan med `includes`. Generatorn gör ett skript per punkt och
+  lägger dem i debugmenyn.
 
-### Kända begränsningar just nu
+Kör `python3 tools/story/gen_story.py` efter ändringar (GitHub-bygget och
+`build_rom.sh` gör det automatiskt). Tilldelade flaggnummer sparas i
+`tools/story/flag_allocations.json`.
 
-- Route 2, Route 21, Route 22 och resten av Kanto är inte importerade än, så
-  Viridian City saknar norra/västra utgångar. Att importera fler kartor är i
-  huvudsak att lägga till dem i `config.json`, köra verktyget och handjustera
-  skript som rapporten pekar ut.
-- Gymtränarna i Viridian pratar bara (FireReds tränardata är inte portad).
-- Regionkartan, Fly och Pokémon Center-respawn (`setrespawn`) för Kanto saknas.
-- Lediga flaggor/variabler i Emerald räcker för några städer, inte hela Kanto.
-  Save-blocket behöver utökas längre fram.
-- Dörr- och trappanimationer från FireRed spelas inte upp (varpen fungerar).
+### Status
+
+- Repot bytte bas till pokeemerald-expansion. Den tidigare Kanto-importen till
+  vanliga pokeemerald är borttagen eftersom expansion redan innehåller
+  FireReds kartor och tilesets (finns kvar i git-historiken).
+- Milstolpesystemet finns med fyra Hoenn-testpunkter som platshållare tills
+  Johto-kartorna finns.
 
 ## Ändringslogg
 
-- **Emerald:** Kanto-import steg 1 – Pallet Town, Route 1, Viridian City med
-  interiörer importerade från FireRed, sjömän mellan Littleroot och Pallet Town,
-  Prof. Oak delar ut Kanto-starter. Se avsnittet ovan. FireRed och Crystal är
-  oförändrade.
+- **Byte till pokeemerald-expansion** som huvudprojekt. Story-milstolpar och
+  testpunkter via `story/milestones.json` och en ny post i debugmenyn.
+- *(Tidigare)* Kanto-import steg 1 till vanliga pokeemerald: Pallet Town,
+  Route 1, Viridian City. Ersatt av expansions inbyggda FireRed-data.

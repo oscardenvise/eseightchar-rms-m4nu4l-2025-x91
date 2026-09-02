@@ -1,0 +1,64 @@
+{
+  "_kommentar": [
+    "Storyns milstolpar och testpunkter. Redigeras här i chatten/projektet.",
+    "story_flags: namn på flaggor som skript använder för att låsa/öppna delar av spelet.",
+    "checkpoints: testpunkter som kan väljas i debugmenyn (R + Start i spelet -> Utilities -> Story checkpoints).",
+    "Ett checkpoint kan bygga på ett annat via 'includes'. Fält: flags_set, flags_clear, vars, badges,",
+    "party [{species, level, item}], items [{item, count}], pokedex, national_dex, running_shoes, raw (fria skriptrader), warp {map, x, y}."
+  ],
+  "story_flags": [
+    {"name": "FLAG_STORY_JOHTO_STARTER_RECEIVED", "beskrivning": "Spelaren har fått sin starter av Elm"},
+    {"name": "FLAG_STORY_JOHTO_CHAMPION", "beskrivning": "Johtos Elite 4 och Lance besegrade"},
+    {"name": "FLAG_STORY_KANTO_UNLOCKED", "beskrivning": "S.S. Aqua / vägen till Kanto öppen"},
+    {"name": "FLAG_STORY_KANTO_ALL_BADGES", "beskrivning": "Alla 8 Kanto-badges"},
+    {"name": "FLAG_STORY_HOENN_UNLOCKED", "beskrivning": "Resan till Hoenn är öppen"},
+    {"name": "FLAG_STORY_HOENN_CHAMPION", "beskrivning": "Hoenns Elite 4 besegrade"}
+  ],
+  "checkpoints": [
+    {
+      "id": "hoenn_start",
+      "name": "Hoenn: start",
+      "beskrivning": "Littleroot Town efter introt, med springskor och Pokédex. Platshållare tills Johto finns.",
+      "flags_set": ["FLAG_SYS_POKEMON_GET", "FLAG_RESCUED_BIRCH", "FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE",
+                    "FLAG_ADVENTURE_STARTED", "FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG", "FLAG_RECEIVED_POKEDEX_FROM_BIRCH",
+                    "FLAG_RECEIVED_RUNNING_SHOES", "FLAG_SYS_B_DASH"],
+      "flags_clear": ["FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH"],
+      "vars": {"VAR_BIRCH_LAB_STATE": 2, "VAR_ROUTE101_STATE": 3, "VAR_LITTLEROOT_TOWN_STATE": 4,
+               "VAR_LITTLEROOT_INTRO_STATE": 7, "VAR_LITTLEROOT_HOUSES_STATE_BRENDAN": 2,
+               "VAR_LITTLEROOT_HOUSES_STATE_MAY": 2, "VAR_LITTLEROOT_RIVAL_STATE": 4},
+      "pokedex": true,
+      "party": [{"species": "SPECIES_TREECKO", "level": 5}],
+      "items": [{"item": "ITEM_POTION", "count": 5}, {"item": "ITEM_POKE_BALL", "count": 10}],
+      "warp": {"map": "MAP_LITTLEROOT_TOWN", "x": 10, "y": 12}
+    },
+    {
+      "id": "hoenn_badge1",
+      "name": "Hoenn: 1 badge",
+      "beskrivning": "Efter Roxanne i Rustboro City.",
+      "includes": ["hoenn_start"],
+      "badges": 1,
+      "party": [{"species": "SPECIES_GROVYLE", "level": 18}, {"species": "SPECIES_POOCHYENA", "level": 14}],
+      "warp": {"map": "MAP_RUSTBORO_CITY", "x": 16, "y": 39}
+    },
+    {
+      "id": "hoenn_badge8",
+      "name": "Hoenn: 8 badges",
+      "beskrivning": "Alla Hoenn-badges, framför Pokémon League i Ever Grande City.",
+      "includes": ["hoenn_start"],
+      "badges": 8,
+      "national_dex": true,
+      "party": [{"species": "SPECIES_SCEPTILE", "level": 55}, {"species": "SPECIES_MIGHTYENA", "level": 52},
+                {"species": "SPECIES_SWELLOW", "level": 52}, {"species": "SPECIES_MANECTRIC", "level": 52}],
+      "items": [{"item": "ITEM_HYPER_POTION", "count": 20}, {"item": "ITEM_FULL_HEAL", "count": 10}],
+      "warp": {"map": "MAP_EVER_GRANDE_CITY", "x": 27, "y": 49}
+    },
+    {
+      "id": "hoenn_champion",
+      "name": "Hoenn: champion",
+      "beskrivning": "Efter Hall of Fame. Testar efterspel.",
+      "includes": ["hoenn_badge8"],
+      "flags_set": ["FLAG_SYS_GAME_CLEAR", "FLAG_STORY_HOENN_CHAMPION"],
+      "warp": {"map": "MAP_LITTLEROOT_TOWN", "x": 10, "y": 12}
+    }
+  ]
+}

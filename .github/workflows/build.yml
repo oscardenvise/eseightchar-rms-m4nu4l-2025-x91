@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  firered:
+    name: Pokémon FireRed (.gba)
     runs-on: ubuntu-latest
     env:
       GAME_VERSION: FIRERED
@@ -30,17 +31,54 @@ jobs:
           sudo apt-get install -y build-essential binutils-arm-none-eabi libpng-dev
 
       - name: Bygg och installera agbcc
-        working-directory: ./agbcc
+        working-directory: agbcc
         run: |
           ./build.sh
-          ./install.sh ../
+          ./install.sh ../pokefirered
 
       - name: Bygg pokefirered.gba
+        working-directory: pokefirered
         run: make -j$(nproc)
 
       - name: Ladda upp ROM
         uses: actions/upload-artifact@v4
         with:
           name: pokefirered-gba
-          path: pokefirered.gba
+          path: pokefirered/pokefirered.gba
+          if-no-files-found: error
+
+  crystal:
+    name: Pokémon Crystal (.gbc)
+    runs-on: ubuntu-latest
+    env:
+      rgbds_version: v1.0.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout rgbds
+        uses: actions/checkout@v4
+        with:
+          path: rgbds
+          ref: ${{ env.rgbds_version }}
+          repository: gbdev/rgbds
+
+      - name: Installera beroenden
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential bison libpng-dev pkg-config
+
+      - name: Bygg och installera rgbds
+        working-directory: rgbds
+        run: sudo make -j$(nproc) install
+
+      - name: Bygg pokecrystal.gbc
+        working-directory: pokecrystal
+        run: make -j$(nproc)
+
+      - name: Ladda upp ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokecrystal-gbc
+          path: pokecrystal/pokecrystal.gbc
           if-no-files-found: error

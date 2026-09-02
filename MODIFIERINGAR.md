@@ -1,40 +1,74 @@
-# Modifieringar
+# Pokémon-modifieringar
 
-Det här repot är en kopia av [pret/pokefirered](https://github.com/pret/pokefirered)
-(den dekompilerade källkoden till Pokémon FireRed/LeafGreen), utgående från
-upstream-commit `c75f352304d529f6ba92d4f74b9cf8b5c3810788`.
+Det här repot innehåller källkoden till två Pokémon-spel, hämtad från
+pret-projektens dekompileringar/disassemblies, med målet att göra egna
+ändringar och bygga spelbara ROM-filer.
 
-Målet är att göra egna ändringar i spelet och bygga en spelbar `.gba`-fil.
+| Mapp             | Spel                       | Upstream                                                        | ROM-fil            | Spelas i                        |
+|------------------|----------------------------|-----------------------------------------------------------------|--------------------|---------------------------------|
+| `pokefirered/`   | Pokémon FireRed (GBA)      | [pret/pokefirered](https://github.com/pret/pokefirered) @ `c75f352` | `pokefirered.gba`  | mGBA, VisualBoyAdvance-M m.fl.  |
+| `pokecrystal/`   | Pokémon Crystal (GBC)      | [pret/pokecrystal](https://github.com/pret/pokecrystal) @ `7a7881d`  | `pokecrystal.gbc`  | mGBA, SameBoy, BGB m.fl.        |
 
 ## Så bygger du
 
+Varje push till GitHub bygger båda ROM-filerna automatiskt. Gå till fliken
+**Actions**, öppna senaste körningen och ladda ner artefakten
+`pokefirered-gba` eller `pokecrystal-gbc`.
+
+Lokalt (Ubuntu/Debian/WSL):
+
 ```bash
-./build_rom.sh            # bygger pokefirered.gba
+./pokefirered/build_rom.sh     # -> pokefirered/pokefirered.gba
+./pokecrystal/build_rom.sh     # -> pokecrystal/pokecrystal.gbc
 ```
 
-eller manuellt enligt [INSTALL.md](INSTALL.md). Varje push till GitHub bygger
-också ROM:en automatiskt (se fliken *Actions*, artefakten `pokefirered-gba`).
+Skripten hämtar och bygger kompilatorn/assemblern (agbcc resp. rgbds 1.0.3)
+första gången. Manuella instruktioner finns i respektive `INSTALL.md`.
 
-Så länge inga ändringar gjorts matchar bygget originalet:
-`sha1: 41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc` (kontrollera med `make compare`).
+Så länge inga ändringar gjorts matchar byggena originalen:
+
+- `pokefirered.gba` sha1 `41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc` (kontrollera med `make compare` i `pokefirered/`)
+- `pokecrystal.gbc` sha1 `f4cd194bdee0d04ca4eac29e09b8e4e9d818c133` (kontrollera med `make compare` i `pokecrystal/`)
 
 ## Var saker finns i koden
 
-| Vill du ändra ...                  | Titta i ...                                              |
-|------------------------------------|----------------------------------------------------------|
+### Pokémon FireRed (`pokefirered/`, skrivet i C)
+
+| Vill du ändra ...                  | Titta i ...                                                       |
+|------------------------------------|-------------------------------------------------------------------|
 | Startpokémon                       | `data/maps/PalletTown_ProfessorOaksLab/scripts.inc`, `src/data/`  |
-| Pokémon-statistik, typer, EV       | `src/data/pokemon/species_info.h`                        |
-| Attacker som Pokémon lär sig       | `src/data/pokemon/level_up_learnsets.h`                  |
-| Attackers styrka/effekt            | `src/data/battle_moves.h`                                |
-| Vilda Pokémon per område           | `src/data/wild_encounters.json`                          |
-| Tränare och deras lag              | `src/data/trainers.h`, `src/data/trainer_parties.h`      |
-| Föremål (pris, effekt)             | `src/data/items.json`                                    |
-| Dialog/text                        | `data/maps/<karta>/text.inc`, `data/text/`               |
-| Kartor och events                  | `data/maps/<karta>/` (redigeras enklast med Porymap)     |
-| Grafik (sprites, tiles)            | `graphics/`                                              |
-| Spelmekanik (strid, XP, fångst)    | `src/battle_*.c`, `src/pokemon.c`                        |
-| Musik och ljud                     | `sound/`                                                 |
+| Pokémon-statistik, typer, EV       | `src/data/pokemon/species_info.h`                                 |
+| Attacker som Pokémon lär sig       | `src/data/pokemon/level_up_learnsets.h`                           |
+| Attackers styrka/effekt            | `src/data/battle_moves.h`                                         |
+| Vilda Pokémon per område           | `src/data/wild_encounters.json`                                   |
+| Tränare och deras lag              | `src/data/trainers.h`, `src/data/trainer_parties.h`               |
+| Föremål (pris, effekt)             | `src/data/items.json`                                             |
+| Dialog/text                        | `data/maps/<karta>/text.inc`, `data/text/`                        |
+| Kartor och events                  | `data/maps/<karta>/` (redigeras enklast med Porymap)              |
+| Grafik (sprites, tiles)            | `graphics/`                                                       |
+| Spelmekanik (strid, XP, fångst)    | `src/battle_*.c`, `src/pokemon.c`                                 |
+| Musik och ljud                     | `sound/`                                                          |
+
+### Pokémon Crystal (`pokecrystal/`, skrivet i Game Boy-assembler)
+
+| Vill du ändra ...                  | Titta i ...                                                       |
+|------------------------------------|-------------------------------------------------------------------|
+| Startpokémon                       | `maps/ElmsLab.asm`                                                |
+| Pokémon-statistik, typer           | `data/pokemon/base_stats/<pokemon>.asm`                           |
+| Attacker som Pokémon lär sig, evolutioner | `data/pokemon/evos_attacks.asm`                            |
+| Attackers styrka/effekt            | `data/moves/moves.asm`                                            |
+| Vilda Pokémon per område           | `data/wild/johto_grass.asm`, `kanto_grass.asm`, `*_water.asm`     |
+| Tränare och deras lag              | `data/trainers/parties.asm`                                       |
+| Föremål (pris, effekt)             | `data/items/attributes.asm`, `data/items/descriptions.asm`        |
+| Dialog/text                        | `maps/<karta>.asm`, `data/text/`                                  |
+| Kartor och events                  | `maps/<karta>.asm` + `.blk` (redigeras enklast med Polished Map)  |
+| Grafik (sprites, tiles)            | `gfx/`                                                            |
+| Spelmekanik (strid, XP, fångst)    | `engine/battle/`, `engine/pokemon/`                               |
+| Musik och ljud                     | `audio/`                                                          |
+
+Pret har dessutom en bra samling färdiga guider för vanliga ändringar i
+Crystal: <https://github.com/pret/pokecrystal/wiki/Tutorials>.
 
 ## Ändringslogg
 
-*Inga ändringar än – bygget är identiskt med originalet.*
+*Inga ändringar än – båda byggena är identiska med originalen.*

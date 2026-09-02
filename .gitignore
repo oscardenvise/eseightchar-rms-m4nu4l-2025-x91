@@ -4,3 +4,6 @@
 
 # Konverteringsrapport (genereras vid varje körning)
 tools/kanto_import/last_report.txt
+
+# Zippade ROM-filer (byggartefakt)
+*.zip

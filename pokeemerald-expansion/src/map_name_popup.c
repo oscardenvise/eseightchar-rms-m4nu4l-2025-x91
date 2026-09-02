@@ -687,6 +687,10 @@ static void LoadMapNamePopUpWindowBg(void)
             regionMapSectionId = 0; // Discard kanto region sections;
     }
 
+    // Kartsektioner för fler regioner (t.ex. Johto) ligger efter tabellen – ge dem standardtemat.
+    if (regionMapSectionId >= ARRAY_COUNT(sMapSectionToThemeId))
+        regionMapSectionId = 0;
+
     if (OW_POPUP_GENERATION == GEN_5)
     {
         popUpThemeId = sRegionMapSectionId_To_PopUpThemeIdMapping_BW[regionMapSectionId];

@@ -336,6 +336,17 @@
 #define TESTING_VAR_UNUSED_5                (TESTING_VARS_START + 0x5)
 #define TESTING_VAR_UNUSED_6                (TESTING_VARS_START + 0x6)
 #define TESTING_VAR_UNUSED_7                (TESTING_VARS_START + 0x7)
+
 #endif // TESTING
+
+
+// CRYSTAL_IMPORT_BEGIN
+// Crystal-scenvariabler mappade till oanvända Emerald-variabler – genererat av tools/crystal_import
+#define VAR_SCENE_CHERRYGROVE_CITY VAR_UNUSED_0x409B
+#define VAR_SCENE_ELMS_LAB VAR_UNUSED_0x408B
+#define VAR_SCENE_NEW_BARK_TOWN VAR_UNUSED_0x404E
+#define VAR_SCENE_PLAYERS_HOUSE_1F VAR_UNUSED_0x4083
+#define VAR_SCENE_ROUTE_29 VAR_UNUSED_0x4091
+// CRYSTAL_IMPORT_END
 
 #endif // GUARD_CONSTANTS_VARS_H

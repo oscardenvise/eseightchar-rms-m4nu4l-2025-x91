@@ -1057,6 +1057,12 @@ gStdScripts_End::
 
 	.include "data/scripts/config.inc"
 	.include "data/scripts/debug.inc"
+@ CRYSTAL_IMPORT_BEGIN
+	.include "data/johto/event_scripts.inc"
+@ CRYSTAL_IMPORT_END
+
+
+
 @ STORY_GEN_BEGIN
 	.include "data/scripts/story_checkpoints.inc"
 @ STORY_GEN_END

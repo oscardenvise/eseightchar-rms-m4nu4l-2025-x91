@@ -56,7 +56,7 @@ def main():
     lines = ['// Story-flaggor från story/milestones.json (genererat av tools/story/gen_story.py)']
     for f in data.get('story_flags', []):
         lines.append(f'#define {f["name"]:<40} {alloc[f["name"]]} // {f.get("beskrivning", "")}')
-    marked_block(flags_h, '\n'.join(lines), anchor=r'^#endif', before=True)
+    marked_block(flags_h, '\n'.join(lines), anchor=r'^#endif // GUARD_', before=True)
 
     # checkpoints
     cps = {c['id']: c for c in data['checkpoints']}

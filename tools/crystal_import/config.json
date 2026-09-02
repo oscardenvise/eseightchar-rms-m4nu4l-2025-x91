@@ -1,0 +1,377 @@
+{
+  "crystal_dir": "pokecrystal",
+  "game_dir": "pokeemerald-expansion",
+  "region": "REGION_JOHTO",
+  "maps": [
+    "NewBarkTown",
+    "PlayersHouse1F",
+    "PlayersHouse2F",
+    "ElmsLab",
+    "ElmsHouse",
+    "PlayersNeighborsHouse",
+    "Route29",
+    "Route29Route46Gate",
+    "CherrygroveCity",
+    "CherrygrovePokecenter1F",
+    "CherrygroveMart",
+    "GuideGentsHouse",
+    "CherrygroveGymSpeechHouse",
+    "CherrygroveEvolutionSpeechHouse"
+  ],
+  "map_group_name": "gMapGroup_Johto",
+  "music_map": {
+    "MUSIC_NEW_BARK_TOWN": "MUS_LITTLEROOT",
+    "MUSIC_ROUTE_29": "MUS_ROUTE101",
+    "MUSIC_CHERRYGROVE_CITY": "MUS_OLDALE",
+    "MUSIC_POKEMON_CENTER": "MUS_POKE_CENTER",
+    "MUSIC_PROF_ELM": "MUS_BIRCH_LAB",
+    "MUSIC_ROUTE_30": "MUS_ROUTE104",
+    "MUSIC_VIOLET_CITY": "MUS_PETALBURG",
+    "MUSIC_AZALEA_TOWN": "MUS_VERDANTURF",
+    "MUSIC_GOLDENROD_CITY": "MUS_RUSTBORO",
+    "MUSIC_ECRUTEAK_CITY": "MUS_FORTREE",
+    "MUSIC_ROUTE_36": "MUS_GSC_ROUTE38",
+    "MUSIC_ROUTE_37": "MUS_GSC_ROUTE38",
+    "MUSIC_GYM": "MUS_GYM",
+    "MUSIC_UNION_CAVE": "MUS_CAVE_OF_ORIGIN",
+    "MUSIC_DARK_CAVE": "MUS_CAVE_OF_ORIGIN",
+    "MUSIC_SPROUT_TOWER": "MUS_MT_PYRE",
+    "MUSIC_TIN_TOWER": "MUS_MT_PYRE",
+    "MUSIC_BURNED_TOWER": "MUS_MT_PYRE_EXTERIOR",
+    "MUSIC_NATIONAL_PARK": "MUS_PETALBURG_WOODS",
+    "MUSIC_LAKE_OF_RAGE": "MUS_ROUTE119",
+    "MUSIC_INDIGO_PLATEAU": "MUS_EVER_GRANDE",
+    "MUSIC_VIRIDIAN_CITY": "MUS_RG_PEWTER",
+    "MUSIC_PALLET_TOWN": "MUS_RG_PALLET",
+    "MUSIC_CELADON_CITY": "MUS_RG_CELADON",
+    "MUSIC_LAVENDER_TOWN": "MUS_RG_LAVENDER",
+    "MUSIC_VERMILION_CITY": "MUS_RG_VERMILLION",
+    "MUSIC_ROUTE_1": "MUS_RG_ROUTE1",
+    "MUSIC_ROUTE_3": "MUS_RG_ROUTE3",
+    "MUSIC_ROUTE_12": "MUS_RG_ROUTE11",
+    "MUSIC_ROUTE_2": "MUS_RG_ROUTE24"
+  },
+  "music_default": "MUS_ROUTE101",
+  "sprite_map": {
+    "SPRITE_TEACHER": "OBJ_EVENT_GFX_WOMAN_2",
+    "SPRITE_FISHER": "OBJ_EVENT_GFX_FISHERMAN",
+    "SPRITE_FISHING_GURU": "OBJ_EVENT_GFX_FISHERMAN",
+    "SPRITE_RIVAL": "OBJ_EVENT_GFX_RED",
+    "SPRITE_MOM": "OBJ_EVENT_GFX_MOM",
+    "SPRITE_POKEFAN_F": "OBJ_EVENT_GFX_POKEFAN_F",
+    "SPRITE_POKEFAN_M": "OBJ_EVENT_GFX_POKEFAN_M",
+    "SPRITE_YOUNGSTER": "OBJ_EVENT_GFX_YOUNGSTER",
+    "SPRITE_STANDING_YOUNGSTER": "OBJ_EVENT_GFX_YOUNGSTER",
+    "SPRITE_COOLTRAINER_M": "OBJ_EVENT_GFX_CAMPER",
+    "SPRITE_COOLTRAINER_F": "OBJ_EVENT_GFX_PICNICKER",
+    "SPRITE_LASS": "OBJ_EVENT_GFX_LASS",
+    "SPRITE_BUG_CATCHER": "OBJ_EVENT_GFX_BUG_CATCHER",
+    "SPRITE_GRAMPS": "OBJ_EVENT_GFX_OLD_MAN",
+    "SPRITE_GRANNY": "OBJ_EVENT_GFX_OLD_WOMAN",
+    "SPRITE_ELM": "OBJ_EVENT_GFX_PROF_BIRCH",
+    "SPRITE_OAK": "OBJ_EVENT_GFX_PROF_BIRCH",
+    "SPRITE_NURSE": "OBJ_EVENT_GFX_NURSE",
+    "SPRITE_CLERK": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+    "SPRITE_GENTLEMAN": "OBJ_EVENT_GFX_GENTLEMAN",
+    "SPRITE_SCIENTIST": "OBJ_EVENT_GFX_SCIENTIST_1",
+    "SPRITE_SUPER_NERD": "OBJ_EVENT_GFX_MANIAC",
+    "SPRITE_BEAUTY": "OBJ_EVENT_GFX_BEAUTY",
+    "SPRITE_TWIN": "OBJ_EVENT_GFX_TWIN",
+    "SPRITE_SAILOR": "OBJ_EVENT_GFX_SAILOR",
+    "SPRITE_CAPTAIN": "OBJ_EVENT_GFX_SAILOR",
+    "SPRITE_OFFICER": "OBJ_EVENT_GFX_MAN_5",
+    "SPRITE_BLACK_BELT": "OBJ_EVENT_GFX_BLACK_BELT",
+    "SPRITE_RECEPTIONIST": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
+    "SPRITE_LINK_RECEPTIONIST": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
+    "SPRITE_GYM_GUIDE": "OBJ_EVENT_GFX_MAN_2",
+    "SPRITE_ROCKER": "OBJ_EVENT_GFX_BARD",
+    "SPRITE_KIMONO_GIRL": "OBJ_EVENT_GFX_WOMAN_4",
+    "SPRITE_SAGE": "OBJ_EVENT_GFX_EXPERT_M",
+    "SPRITE_SWIMMER_GUY": "OBJ_EVENT_GFX_SWIMMER_M",
+    "SPRITE_SWIMMER_GIRL": "OBJ_EVENT_GFX_SWIMMER_F",
+    "SPRITE_ROCKET": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+    "SPRITE_ROCKET_GIRL": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
+    "SPRITE_POKE_BALL": "OBJ_EVENT_GFX_ITEM_BALL",
+    "SPRITE_BIKER": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
+    "SPRITE_BIG_SNORLAX": "OBJ_EVENT_GFX_BIG_SNORLAX_DOLL",
+    "SPRITE_PHARMACIST": "OBJ_EVENT_GFX_OLD_MAN",
+    "SPRITE_GAMEBOY_KID": "OBJ_EVENT_GFX_GAMEBOY_KID",
+    "SPRITE_FRUIT_TREE": "OBJ_EVENT_GFX_APRICORN_TREE",
+    "SPRITE_SUDOWOODO": "OBJ_EVENT_GFX_SUDOWOODO",
+    "SPRITE_BOULDER": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+    "SPRITE_ROCK": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+    "SPRITE_RED": "OBJ_EVENT_GFX_RED",
+    "SPRITE_DAISY": "OBJ_EVENT_GFX_WOMAN_1",
+    "SPRITE_BILL": "OBJ_EVENT_GFX_MAN_2",
+    "SPRITE_KURT": "OBJ_EVENT_GFX_EXPERT_M",
+    "SPRITE_KURT_OUTSIDE": "OBJ_EVENT_GFX_EXPERT_M",
+    "SPRITE_COPYCAT": "OBJ_EVENT_GFX_GIRL_1",
+    "SPRITE_PIKACHU": "OBJ_EVENT_GFX_PIKACHU",
+    "SPRITE_LAPRAS": "OBJ_EVENT_GFX_BIG_LAPRAS_DOLL",
+    "SPRITE_SLOWPOKE": "OBJ_EVENT_GFX_OW_MON",
+    "SPRITE_POKEDEX": "OBJ_EVENT_GFX_ITEM_BALL",
+    "SPRITE_PAPER": "OBJ_EVENT_GFX_ITEM_BALL",
+    "SPRITE_DOLL_1": "OBJ_EVENT_GFX_PIKACHU_DOLL",
+    "SPRITE_DOLL_2": "OBJ_EVENT_GFX_CLEFAIRY_DOLL",
+    "SPRITE_BIG_DOLL": "OBJ_EVENT_GFX_BIG_SNORLAX_DOLL",
+    "SPRITE_CONSOLE": "OBJ_EVENT_GFX_MOVING_BOX",
+    "SPRITE_N64": "OBJ_EVENT_GFX_MOVING_BOX",
+    "SPRITE_SNES": "OBJ_EVENT_GFX_MOVING_BOX",
+    "SPRITE_FAMICOM": "OBJ_EVENT_GFX_MOVING_BOX",
+    "SPRITE_VIRTUAL_BOY": "OBJ_EVENT_GFX_MOVING_BOX"
+  },
+  "sprite_default": "OBJ_EVENT_GFX_MAN_1",
+  "movement_map": {
+    "SPRITEMOVEDATA_STILL": "MOVEMENT_TYPE_FACE_DOWN",
+    "SPRITEMOVEDATA_WANDER": "MOVEMENT_TYPE_WANDER_AROUND",
+    "SPRITEMOVEDATA_SPINRANDOM_SLOW": "MOVEMENT_TYPE_LOOK_AROUND",
+    "SPRITEMOVEDATA_SPINRANDOM_FAST": "MOVEMENT_TYPE_LOOK_AROUND",
+    "SPRITEMOVEDATA_WALK_UP_DOWN": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+    "SPRITEMOVEDATA_WALK_LEFT_RIGHT": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+    "SPRITEMOVEDATA_STANDING_DOWN": "MOVEMENT_TYPE_FACE_DOWN",
+    "SPRITEMOVEDATA_STANDING_UP": "MOVEMENT_TYPE_FACE_UP",
+    "SPRITEMOVEDATA_STANDING_LEFT": "MOVEMENT_TYPE_FACE_LEFT",
+    "SPRITEMOVEDATA_STANDING_RIGHT": "MOVEMENT_TYPE_FACE_RIGHT",
+    "SPRITEMOVEDATA_SPINCLOCKWISE": "MOVEMENT_TYPE_ROTATE_CLOCKWISE",
+    "SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+    "SPRITEMOVEDATA_POKEMON": "MOVEMENT_TYPE_WANDER_AROUND",
+    "SPRITEMOVEDATA_SWIM_WANDER": "MOVEMENT_TYPE_WANDER_AROUND"
+  },
+  "collision_map": {
+    "FLOOR": [
+      "MB_NORMAL",
+      0
+    ],
+    "01": [
+      "MB_NORMAL",
+      0
+    ],
+    "03": [
+      "MB_NORMAL",
+      0
+    ],
+    "04": [
+      "MB_NORMAL",
+      0
+    ],
+    "WALL": [
+      "MB_NORMAL",
+      1
+    ],
+    "CUT_TREE": [
+      "MB_NORMAL",
+      1
+    ],
+    "HEADBUTT_TREE": [
+      "MB_NORMAL",
+      1
+    ],
+    "CUT_08": [
+      "MB_NORMAL",
+      1
+    ],
+    "TALL_GRASS": [
+      "MB_TALL_GRASS",
+      0
+    ],
+    "TALL_GRASS_10": [
+      "MB_TALL_GRASS",
+      0
+    ],
+    "LONG_GRASS": [
+      "MB_LONG_GRASS",
+      0
+    ],
+    "WATER": [
+      "MB_POND_WATER",
+      0
+    ],
+    "WATER_21": [
+      "MB_POND_WATER",
+      0
+    ],
+    "WHIRLPOOL": [
+      "MB_POND_WATER",
+      0
+    ],
+    "WATERFALL": [
+      "MB_WATERFALL",
+      0
+    ],
+    "BUOY": [
+      "MB_NORMAL",
+      1
+    ],
+    "ICE": [
+      "MB_ICE",
+      0
+    ],
+    "PIT": [
+      "MB_MT_PYRE_HOLE",
+      0
+    ],
+    "CURRENT_RIGHT": [
+      "MB_EASTWARD_CURRENT",
+      0
+    ],
+    "CURRENT_LEFT": [
+      "MB_WESTWARD_CURRENT",
+      0
+    ],
+    "CURRENT_UP": [
+      "MB_NORTHWARD_CURRENT",
+      0
+    ],
+    "CURRENT_DOWN": [
+      "MB_SOUTHWARD_CURRENT",
+      0
+    ],
+    "WALK_RIGHT": [
+      "MB_WALK_EAST",
+      0
+    ],
+    "WALK_LEFT": [
+      "MB_WALK_WEST",
+      0
+    ],
+    "WALK_UP": [
+      "MB_WALK_NORTH",
+      0
+    ],
+    "WALK_DOWN": [
+      "MB_WALK_SOUTH",
+      0
+    ],
+    "WARP_CARPET_DOWN": [
+      "MB_SOUTH_ARROW_WARP",
+      0
+    ],
+    "WARP_CARPET_LEFT": [
+      "MB_WEST_ARROW_WARP",
+      0
+    ],
+    "WARP_CARPET_UP": [
+      "MB_NORTH_ARROW_WARP",
+      0
+    ],
+    "WARP_CARPET_RIGHT": [
+      "MB_EAST_ARROW_WARP",
+      0
+    ],
+    "DOOR": [
+      "MB_ANIMATED_DOOR",
+      1
+    ],
+    "LADDER": [
+      "MB_LADDER",
+      0
+    ],
+    "STAIRCASE": [
+      "MB_NON_ANIMATED_DOOR",
+      0
+    ],
+    "CAVE": [
+      "MB_NON_ANIMATED_DOOR",
+      0
+    ],
+    "WARP_PANEL": [
+      "MB_NON_ANIMATED_DOOR",
+      0
+    ],
+    "COUNTER": [
+      "MB_COUNTER",
+      1
+    ],
+    "BOOKSHELF": [
+      "MB_BOOKSHELF",
+      1
+    ],
+    "PC": [
+      "MB_PC",
+      1
+    ],
+    "RADIO": [
+      "MB_NORMAL",
+      1
+    ],
+    "TOWN_MAP": [
+      "MB_REGION_MAP",
+      1
+    ],
+    "MART_SHELF": [
+      "MB_SHOP_SHELF",
+      1
+    ],
+    "TV": [
+      "MB_TELEVISION",
+      1
+    ],
+    "WINDOW": [
+      "MB_NORMAL",
+      1
+    ],
+    "INCENSE_BURNER": [
+      "MB_NORMAL",
+      1
+    ],
+    "HOP_RIGHT": [
+      "MB_JUMP_EAST",
+      0
+    ],
+    "HOP_LEFT": [
+      "MB_JUMP_WEST",
+      0
+    ],
+    "HOP_UP": [
+      "MB_JUMP_NORTH",
+      0
+    ],
+    "HOP_DOWN": [
+      "MB_JUMP_SOUTH",
+      0
+    ],
+    "HOP_DOWN_RIGHT": [
+      "MB_JUMP_SOUTHEAST",
+      0
+    ],
+    "HOP_DOWN_LEFT": [
+      "MB_JUMP_SOUTHWEST",
+      0
+    ],
+    "HOP_UP_RIGHT": [
+      "MB_JUMP_NORTHEAST",
+      0
+    ],
+    "HOP_UP_LEFT": [
+      "MB_JUMP_NORTHWEST",
+      0
+    ],
+    "RIGHT_WALL": [
+      "MB_IMPASSABLE_EAST",
+      0
+    ],
+    "LEFT_WALL": [
+      "MB_IMPASSABLE_WEST",
+      0
+    ],
+    "UP_WALL": [
+      "MB_IMPASSABLE_NORTH",
+      0
+    ],
+    "DOWN_WALL": [
+      "MB_IMPASSABLE_SOUTH",
+      0
+    ]
+  },
+  "water_collisions": [
+    "WATER",
+    "WATER_21",
+    "WHIRLPOOL",
+    "WATERFALL",
+    "BUOY",
+    "CURRENT_RIGHT",
+    "CURRENT_LEFT",
+    "CURRENT_UP",
+    "CURRENT_DOWN"
+  ]
+}

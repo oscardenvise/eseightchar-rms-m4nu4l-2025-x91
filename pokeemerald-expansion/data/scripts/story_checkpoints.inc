@@ -1,5 +1,22 @@
 @ Genererat av tools/story/gen_story.py från story/milestones.json – ändra inte för hand.
 
+Story_Checkpoint_johto_start::
+	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_SYS_B_DASH
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setflag FLAG_SYS_POKEDEX_GET
+	special SetUnlockedPokedexFlags
+	givemon SPECIES_CYNDAQUIL, 5, ITEM_NONE
+	additem ITEM_POTION, 5
+	additem ITEM_POKE_BALL, 10
+	warp MAP_NEW_BARK_TOWN, 13, 7
+	waitstate
+	releaseall
+	end
+
 Story_Checkpoint_hoenn_start::
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH

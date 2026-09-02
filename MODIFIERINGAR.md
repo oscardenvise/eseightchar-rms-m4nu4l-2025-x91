@@ -136,8 +136,49 @@ Kör `python3 tools/story/gen_story.py` efter ändringar (GitHub-bygget och
 - Milstolpesystemet finns med fyra Hoenn-testpunkter som platshållare tills
   Johto-kartorna finns.
 
+
+## Johto från Crystal (pågående)
+
+`tools/crystal_import/import_crystal.py` konverterar kartor från `pokecrystal/`
+(Game Boy Color) till pokeemerald-expansion.
+
+```bash
+python3 tools/crystal_import/import_crystal.py    # kör från repo-roten (kräver Pillow)
+```
+
+Hur den fungerar:
+
+- **Block → metatiles.** Ett Crystal-block är 32x32 pixlar (4x4 tiles). Emerald
+  har 16x16-metatiles, så varje block blir 2x2 metatiles. Kartans storlek
+  dubbleras därför i båda led.
+- **Grafik.** Crystals tiles behålls pixel för pixel. GBC har 4 färger per
+  palett, GBA 16, så tre GBC-paletter packas i varje GBA-palett. Utseendet blir
+  alltså GBC-likt tills vi ritar om tilesetet i Emerald-stil. Dag-paletterna
+  används; natt-paletterna finns i Crystal och kan kopplas till expansionens
+  dag/natt-system senare.
+- **Kollision.** Crystals kollisionsvärden (`COLL_*`) mappas till Emeralds
+  beteenden (`MB_*`) via `collision_map` i configen. Höjd sätts automatiskt:
+  spärrat 0, vatten 1, mark 3, med kant mot vatten som 0.
+- **Events.** Varpar, skyltar, NPC:er och triggers översätts. NPC-skript blir
+  tills vidare textrutor med Crystals dialog. Tränarstrider blir vanliga NPC:er.
+- **Flaggor och variabler.** Crystals `EVENT_*` och scen-ID:n får alias till
+  oanvända Emerald-flaggor/variabler (`tools/crystal_import/allocations.json`).
+- **Vilda Pokémon.** Crystals dag-tabeller läggs in i `wild_encounters.json`.
+
+Importerat hittills: New Bark Town, spelarens hus 1F/2F, Elms labb, Elms hus,
+grannens hus, Route 29 med grinden, Cherrygrove City med Pokémon Center, mart
+och de tre husen.
+
+**Känt problem:** ROM:en byggs, men testpunkten *Johto: New Bark Town* kraschar
+när kartan laddas. Felsökning pågår; troligen tileset- eller metatile-data som
+inte matchar Emeralds förväntningar (paletter, antal tiles eller
+metatile-indexering).
+
+
 ## Ändringslogg
 
+- **Johto-import från Crystal** påbörjad: konverterare, 14 kartor, ny testpunkt.
+  Kraschar när Johto-kartan laddas (under felsökning).
 - **Byte till pokeemerald-expansion** som huvudprojekt. Story-milstolpar och
   testpunkter via `story/milestones.json` och en ny post i debugmenyn.
 - *(Tidigare)* Kanto-import steg 1 till vanliga pokeemerald: Pallet Town,

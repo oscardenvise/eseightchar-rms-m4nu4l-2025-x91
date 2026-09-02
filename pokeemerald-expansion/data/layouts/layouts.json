@@ -9323,6 +9323,160 @@
       "border_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/map.bin",
       "layout_version": "frlg"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK_TOWN",
+      "name": "NewBarkTown_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_CrystalJohto",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/NewBarkTown/border.bin",
+      "blockdata_filepath": "data/layouts/NewBarkTown/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_HOUSE_1F",
+      "name": "PlayersHouse1F_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalPlayersHouse",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/PlayersHouse1F/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersHouse1F/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_HOUSE_2F",
+      "name": "PlayersHouse2F_Layout",
+      "width": 8,
+      "height": 6,
+      "primary_tileset": "gTileset_CrystalPlayersRoom",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/PlayersHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersHouse2F/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_ELMS_LAB",
+      "name": "ElmsLab_Layout",
+      "width": 10,
+      "height": 12,
+      "primary_tileset": "gTileset_CrystalLab",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/ElmsLab/border.bin",
+      "blockdata_filepath": "data/layouts/ElmsLab/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_ELMS_HOUSE",
+      "name": "ElmsHouse_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalPlayersHouse",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/ElmsHouse/border.bin",
+      "blockdata_filepath": "data/layouts/ElmsHouse/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_PLAYERS_NEIGHBORS_HOUSE",
+      "name": "PlayersNeighborsHouse_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalHouse",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/PlayersNeighborsHouse/border.bin",
+      "blockdata_filepath": "data/layouts/PlayersNeighborsHouse/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_ROUTE_29",
+      "name": "Route29_Layout",
+      "width": 60,
+      "height": 18,
+      "primary_tileset": "gTileset_CrystalJohto",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/Route29/border.bin",
+      "blockdata_filepath": "data/layouts/Route29/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_ROUTE_29_ROUTE_46_GATE",
+      "name": "Route29Route46Gate_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalGate",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/Route29Route46Gate/border.bin",
+      "blockdata_filepath": "data/layouts/Route29Route46Gate/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_CITY",
+      "name": "CherrygroveCity_Layout",
+      "width": 40,
+      "height": 18,
+      "primary_tileset": "gTileset_CrystalJohto",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/CherrygroveCity/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveCity/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_POKECENTER_1F",
+      "name": "CherrygrovePokecenter1F_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalPokecenter",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/CherrygrovePokecenter1F/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygrovePokecenter1F/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_MART",
+      "name": "CherrygroveMart_Layout",
+      "width": 12,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalMart",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/CherrygroveMart/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveMart/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_GUIDE_GENTS_HOUSE",
+      "name": "GuideGentsHouse_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalHouse",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/GuideGentsHouse/border.bin",
+      "blockdata_filepath": "data/layouts/GuideGentsHouse/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_GYM_SPEECH_HOUSE",
+      "name": "CherrygroveGymSpeechHouse_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalHouse",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/CherrygroveGymSpeechHouse/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveGymSpeechHouse/map.bin",
+      "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_EVOLUTION_SPEECH_HOUSE",
+      "name": "CherrygroveEvolutionSpeechHouse_Layout",
+      "width": 8,
+      "height": 8,
+      "primary_tileset": "gTileset_CrystalHouse",
+      "secondary_tileset": "gTileset_CrystalEmpty",
+      "border_filepath": "data/layouts/CherrygroveEvolutionSpeechHouse/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveEvolutionSpeechHouse/map.bin",
+      "layout_version": "emerald"
     }
   ]
 }

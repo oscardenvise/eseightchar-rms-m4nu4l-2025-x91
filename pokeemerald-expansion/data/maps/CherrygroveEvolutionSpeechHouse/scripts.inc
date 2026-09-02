@@ -1,0 +1,25 @@
+@ CRYSTAL_IMPORT_BEGIN: genererad från pokecrystal av tools/crystal_import. Ta bort raden för att handjustera.
+CherrygroveEvolutionSpeechHouse_MapScripts::
+	.byte 0
+
+CherrygroveEvolutionSpeechHouse_EventScript_CherrygroveEvolutionSpeechHouseLassScript::
+	msgbox CherrygroveEvolutionSpeechHouse_Text_CherrygroveEvolutionSpeechHouseLassText, MSGBOX_NPC
+	end
+
+CherrygroveEvolutionSpeechHouse_EventScript_CherrygroveEvolutionSpeechHouseYoungsterScript::
+	msgbox CherrygroveEvolutionSpeechHouse_Text_CherrygroveEvolutionSpeechHouseYoungsterText, MSGBOX_NPC
+	end
+
+CherrygroveEvolutionSpeechHouse_EventScript_CherrygroveEvolutionSpeechHouseBookshelf::
+	msgbox CherrygroveEvolutionSpeechHouse_Text_CrystalTodo, MSGBOX_SIGN
+	end
+
+CherrygroveEvolutionSpeechHouse_Text_CrystalTodo::
+	.string "…$"
+
+CherrygroveEvolutionSpeechHouse_Text_CherrygroveEvolutionSpeechHouseLassText::
+	.string "POKéMON change?$"
+
+CherrygroveEvolutionSpeechHouse_Text_CherrygroveEvolutionSpeechHouseYoungsterText::
+	.string "POKéMON gain expe-\nrience in battle$"
+

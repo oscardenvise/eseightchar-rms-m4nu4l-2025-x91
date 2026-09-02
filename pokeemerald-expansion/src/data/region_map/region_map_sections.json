@@ -1630,6 +1630,30 @@
       "y": 4,
       "width": 1,
       "height": 1
+    },
+    {
+      "id": "MAPSEC_NEW_BARK_TOWN",
+      "name": "NEW BARK TOWN",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_29",
+      "name": "ROUTE 29",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_CHERRYGROVE_CITY",
+      "name": "CHERRYGROVE CITY",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
     }
   ]
 }

@@ -7,3 +7,8 @@ tools/kanto_import/last_report.txt
 
 # Zippade ROM-filer (byggartefakt)
 *.zip
+
+# Emulatorloggar
+tools/emulator_test/*.log
+tools/emulator_test/gdbd.cmd
+tools/emulator_test/gdbd.out

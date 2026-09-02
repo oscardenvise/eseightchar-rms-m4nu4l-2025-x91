@@ -1186,3 +1186,7 @@ static void BlendAnimPalette_BattleDome_FloorLightsNoBlend(u16 timer)
             sSecondaryTilesetAnimCallback = NULL;
     }
 }
+
+// KANTO_IMPORT_BEGIN
+#include "data/kanto/tileset_anims.h"
+// KANTO_IMPORT_END

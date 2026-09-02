@@ -1,3 +1,6 @@
 # Lokala verktygsbyggen (hämtas av build_rom.sh)
 /agbcc/
 /rgbds/
+
+# Konverteringsrapport (genereras vid varje körning)
+tools/kanto_import/last_report.txt

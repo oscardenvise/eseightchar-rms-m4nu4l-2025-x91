@@ -685,16 +685,49 @@ static bool8 CheckStandardWildEncounter(u16 metatileBehavior)
     return FALSE;
 }
 
+// Kanto: FireReds trappor – spelaren står på trapprutan och trycker åt trappans håll
+static bool8 IsDirectionalStairWarpMetatileBehavior(u16 metatileBehavior, u8 playerDirection)
+{
+    switch (playerDirection)
+    {
+    case DIR_WEST:
+        if (MetatileBehavior_IsDirectionalUpLeftStairWarp(metatileBehavior))
+            return TRUE;
+        if (MetatileBehavior_IsDirectionalDownLeftStairWarp(metatileBehavior))
+            return TRUE;
+        break;
+    case DIR_EAST:
+        if (MetatileBehavior_IsDirectionalUpRightStairWarp(metatileBehavior))
+            return TRUE;
+        if (MetatileBehavior_IsDirectionalDownRightStairWarp(metatileBehavior))
+            return TRUE;
+        break;
+    }
+    return FALSE;
+}
+
 static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8 direction)
 {
     s8 warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
 
-    if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE && warpEventId != WARP_ID_NONE)
+    if (warpEventId != WARP_ID_NONE)
     {
-        StoreInitialPlayerAvatarState();
-        SetupWarp(&gMapHeader, warpEventId, position);
-        DoWarp();
-        return TRUE;
+        if (IsArrowWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
+        {
+            StoreInitialPlayerAvatarState();
+            SetupWarp(&gMapHeader, warpEventId, position);
+            DoWarp();
+            return TRUE;
+        }
+        else if (IsDirectionalStairWarpMetatileBehavior(metatileBehavior, direction) == TRUE)
+        {
+            if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+                SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
+            StoreInitialPlayerAvatarState();
+            SetupWarp(&gMapHeader, warpEventId, position);
+            DoWarp();
+            return TRUE;
+        }
     }
     return FALSE;
 }

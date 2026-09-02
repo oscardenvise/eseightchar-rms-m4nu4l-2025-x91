@@ -453,6 +453,10 @@ gStdScripts_End::
 	.include "data/maps/TerraCave_End/scripts.inc"
 	.include "data/maps/AlteringCave/scripts.inc"
 	.include "data/maps/MeteorFalls_StevensCave/scripts.inc"
+
+@ KANTO_IMPORT_BEGIN
+	.include "data/kanto/event_scripts.inc"
+@ KANTO_IMPORT_END
 	.include "data/scripts/shared_secret_base.inc"
 	.include "data/maps/BattleColosseum_2P/scripts.inc"
 	.include "data/maps/TradeCenter/scripts.inc"

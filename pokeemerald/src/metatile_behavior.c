@@ -259,6 +259,27 @@ bool8 MetatileBehavior_IsLadder(u8 metatileBehavior)
         return FALSE;
 }
 
+// Kanto: FireReds trappvarpar
+bool8 MetatileBehavior_IsDirectionalUpRightStairWarp(u8 metatileBehavior)
+{
+    return metatileBehavior == MB_UP_RIGHT_STAIR_WARP;
+}
+
+bool8 MetatileBehavior_IsDirectionalUpLeftStairWarp(u8 metatileBehavior)
+{
+    return metatileBehavior == MB_UP_LEFT_STAIR_WARP;
+}
+
+bool8 MetatileBehavior_IsDirectionalDownRightStairWarp(u8 metatileBehavior)
+{
+    return metatileBehavior == MB_DOWN_RIGHT_STAIR_WARP;
+}
+
+bool8 MetatileBehavior_IsDirectionalDownLeftStairWarp(u8 metatileBehavior)
+{
+    return metatileBehavior == MB_DOWN_LEFT_STAIR_WARP;
+}
+
 bool8 MetatileBehavior_IsNonAnimDoor(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_NON_ANIMATED_DOOR

@@ -32,4 +32,8 @@ void InitTilesetAnim_EliteFour(void);
 void InitTilesetAnim_BattleDome(void);
 void InitTilesetAnim_BattlePyramid(void);
 
+// KANTO_IMPORT_BEGIN
+void InitTilesetAnim_KantoGeneral(void);
+// KANTO_IMPORT_END
+
 #endif // GUARD_TILESET_ANIMS_H

@@ -247,4 +247,12 @@ enum {
 
 #define MB_INVALID   UCHAR_MAX
 
+// Kanto: FireReds riktade trappvarpar. Spelaren står på trapprutan och trycker
+// åt trappans håll för att varpa (se TryArrowWarp i field_control_avatar.c).
+// Använder oanvända beteendevärden.
+#define MB_UP_RIGHT_STAIR_WARP   MB_UNUSED_49
+#define MB_UP_LEFT_STAIR_WARP    MB_UNUSED_4A
+#define MB_DOWN_RIGHT_STAIR_WARP MB_UNUSED_4B
+#define MB_DOWN_LEFT_STAIR_WARP  MB_UNUSED_4C
+
 #endif // GUARD_METATILE_BEHAVIORS_H

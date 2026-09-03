@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1">
+<title>Porymap Mobile</title>
+<meta name="description" content="Kartredigerare för pokeemerald/pokefirered-decomp, byggd för iPhone och iPad.">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Porymap">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <button class="icon-btn" id="menuBtn" aria-label="Meny">☰</button>
+    <div class="title">
+      <strong id="mapTitle">Porymap Mobile</strong>
+      <span id="mapSubtitle">Inget projekt öppet</span>
+    </div>
+    <button class="icon-btn" id="undoBtn" aria-label="Ångra" disabled>↶</button>
+    <button class="icon-btn" id="redoBtn" aria-label="Gör om" disabled>↷</button>
+    <button class="icon-btn save" id="saveBtn" aria-label="Spara" disabled>💾</button>
+  </header>
+
+  <main class="stage">
+    <canvas id="mapCanvas"></canvas>
+    <div class="stage-overlay">
+      <div class="coords" id="coords"></div>
+      <div class="zoom-controls">
+        <button class="icon-btn" id="zoomOutBtn" aria-label="Zooma ut">−</button>
+        <button class="icon-btn" id="zoomFitBtn" aria-label="Anpassa">⤢</button>
+        <button class="icon-btn" id="zoomInBtn" aria-label="Zooma in">+</button>
+      </div>
+    </div>
+    <div class="empty-state" id="emptyState">
+      <h1>Porymap Mobile</h1>
+      <p>En kartredigerare för decomp-projekt, gjord för att köras direkt i telefonen.</p>
+      <button class="primary" id="loadDemoBtn">Öppna demoprojektet</button>
+      <button class="secondary" id="openZipBtn2">Öppna ett projekt (.zip)</button>
+      <p class="hint">Zippa din <code>pokeemerald</code>-mapp i Filer-appen och välj arkivet här.</p>
+    </div>
+  </main>
+
+  <nav class="modes" role="tablist">
+    <button class="mode-btn active" data-mode="metatiles" role="tab">Metatiles</button>
+    <button class="mode-btn" data-mode="collision" role="tab">Kollision</button>
+    <button class="mode-btn" data-mode="events" role="tab">Events</button>
+  </nav>
+
+  <div class="toolbar">
+    <div class="tools" id="tools"></div>
+    <div class="layers">
+      <button class="glyph-btn" data-layer="grid" title="Visa rutnät" aria-label="Visa rutnät">▦</button>
+      <button class="glyph-btn active" data-layer="border" title="Visa kantrutor" aria-label="Visa kantrutor">⬚</button>
+      <button class="glyph-btn active" data-layer="events" title="Visa events" aria-label="Visa events">◈</button>
+    </div>
+  </div>
+
+  <section class="drawer" id="drawer">
+    <button class="drawer-handle" id="drawerHandle" aria-label="Fäll ihop panelen"><span></span></button>
+
+    <div class="panel" id="panel-metatiles">
+      <div class="panel-head">
+        <span id="metatileInfo">Ingen metatile vald</span>
+        <button class="chip" id="brushResetBtn">1×1</button>
+      </div>
+      <div class="picker-scroll"><canvas id="pickerCanvas"></canvas></div>
+      <div class="border-strip">
+        <label>Kant</label>
+        <canvas id="borderCanvas" title="Tryck för att måla kantrutan med vald metatile"></canvas>
+        <span class="hint">Rutorna som upprepas utanför kartan.</span>
+      </div>
+    </div>
+
+    <div class="panel hidden" id="panel-collision">
+      <div class="panel-head"><span>Målar kollision och höjd</span></div>
+      <div class="field">
+        <label>Kollision</label>
+        <div class="segmented" id="collisionButtons"></div>
+      </div>
+      <div class="field">
+        <label>Höjd (elevation)</label>
+        <div class="segmented wrap" id="elevationButtons"></div>
+      </div>
+      <p class="hint">0 = passerbar, 1 = blockerad. Höjd 0 är övergångsvärdet som låter figuren byta plan.</p>
+    </div>
+
+    <div class="panel hidden" id="panel-events">
+      <div class="panel-head">
+        <span id="eventInfo">Tryck på ett event i kartan</span>
+        <div class="row-gap">
+          <button class="chip" id="addEventBtn">+ Nytt</button>
+          <button class="chip danger" id="deleteEventBtn" disabled>Ta bort</button>
+        </div>
+      </div>
+      <div class="event-tabs" id="eventTabs"></div>
+      <div class="event-list" id="eventList"></div>
+      <div class="event-form" id="eventForm"></div>
+    </div>
+  </section>
+
+  <aside class="sheet" id="sheet" aria-hidden="true">
+    <header class="sheet-head">
+      <strong>Projekt</strong>
+      <button class="icon-btn" id="closeSheetBtn" aria-label="Stäng">✕</button>
+    </header>
+    <div class="sheet-body">
+      <div class="project-info" id="projectInfo">Inget projekt öppet.</div>
+      <div class="sheet-actions">
+        <button class="primary" id="openZipBtn">Öppna projekt (.zip)</button>
+        <button class="secondary" id="demoBtn">Ladda demoprojekt</button>
+        <button class="secondary" id="exportChangedBtn" disabled>Exportera ändrade filer</button>
+        <button class="secondary" id="exportAllBtn" disabled>Exportera hela projektet</button>
+        <button class="secondary danger" id="forgetBtn">Glöm sparat projekt</button>
+      </div>
+      <div class="search-row"><input type="search" id="mapSearch" placeholder="Sök karta…" autocomplete="off"></div>
+      <div class="map-list" id="mapList"></div>
+      <details class="help" id="mapPropsDetails">
+        <summary>Kartegenskaper</summary>
+        <div class="event-form" id="mapProps"></div>
+      </details>
+      <details class="help">
+        <summary>Lägg till på hemskärmen</summary>
+        <ol>
+          <li>Öppna sidan i Safari.</li>
+          <li>Tryck på dela-knappen och välj <em>Lägg till på hemskärmen</em>.</li>
+          <li>Starta från ikonen — appen körs då i helskärm och fungerar utan nät.</li>
+        </ol>
+      </details>
+      <details class="help">
+        <summary>Så får du in ditt projekt</summary>
+        <ol>
+          <li>Lägg <code>pokeemerald</code>-mappen i Filer-appen (iCloud Drive fungerar bra).</li>
+          <li>Håll in mappen och välj <em>Komprimera</em>.</li>
+          <li>Tryck <em>Öppna projekt</em> här och välj .zip-filen.</li>
+          <li>Efter redigering: <em>Exportera ändrade filer</em> och packa upp dem över projektet igen.</li>
+        </ol>
+        <p>Det räcker att zippa mappen <code>data</code> om arkivet blir för stort.</p>
+      </details>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <div class="loading" id="loading"><div class="spinner"></div><span id="loadingText">Läser in…</span></div>
+
+  <input type="file" id="fileInput" accept=".zip,application/zip" hidden>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

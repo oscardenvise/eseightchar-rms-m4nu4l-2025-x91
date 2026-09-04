@@ -2,9 +2,7 @@ name: Deploy Porymap Mobile
 
 on:
   push:
-    # Deploys from the feature branch too, so the app can be published without
-    # having to merge first.
-    branches: [main, claude/porymap-ios-app-n2fr0s]
+    branches: [main]
     paths:
       - 'porymap-mobile/**'
       - '.github/workflows/deploy-porymap-mobile.yml'
